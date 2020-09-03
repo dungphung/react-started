@@ -7,6 +7,10 @@ const LoginPage = lazy(() =>
   import(/* webpackChunkName: "404'"*/ "../pages/login"),
 );
 
+const Users = lazy(() =>
+  import(/* webpackChunkName: "404'"*/ "../pages/users"),
+);
+
 const DashBoard = lazy(() => import("../pages/dashboard"));
 
 const routes = [
@@ -16,6 +20,13 @@ const routes = [
     component: DashBoard,
     exact: true,
     componentName: "home",
+  },
+  {
+    key: "users",
+    path: "/users",
+    component: Users,
+    exact: true,
+    componentName: "users",
   },
   {
     key: "loginpage",

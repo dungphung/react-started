@@ -2,17 +2,25 @@ import { Layout, Menu } from "antd";
 
 import React, { useCallback } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { getIconType } from "../../utils";
 
 const listMenu = [
   {
     key: 1,
     type: "PieChartOutlined",
     title: "Bảng Điều Khiển",
+
     to: "/",
+  },
+  {
+    key: 2,
+    type: "UsergroupAddOutlined",
+    title: "Thành viên",
+    to: "/users",
   },
 ];
 
-const SideBars = ({ location }) => {
+const SideBars = ({ location, isCollapsed, onCollapseSidebar }) => {
   const isSelected = useCallback(() => {
     const index = listMenu.findIndex((item) => item.to === location.pathname);
     return index >= 0 ? index + 1 : 1;
@@ -24,8 +32,8 @@ const SideBars = ({ location }) => {
       trigger={null}
       collapsedWidth="80"
       collapsible
-      // collapsed={sidebar.collapsed}
-      // onCollapse={onCollapseSidebar}
+      collapsed={isCollapsed}
+      onCollapse={onCollapseSidebar}
     >
       <Menu
         theme="dark"
@@ -33,7 +41,7 @@ const SideBars = ({ location }) => {
         mode="inline"
       >
         {listMenu.map((item) => (
-          <Menu.Item key={item.key}>
+          <Menu.Item key={item.key} icon={getIconType(item.type)}>
             <Link to={item.to}>
               <span style={{ marginLeft: "10px" }}>{item.title}</span>
             </Link>

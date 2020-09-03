@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import { Route, Redirect } from "react-router-dom";
 import Routes from "./routes";
 
-import { SideBar } from "./layouts";
+import { SideBar, Header } from "./layouts";
 
 let isLogin = false;
 
@@ -21,9 +21,10 @@ const Container = (props) => {
     <Layout className="app-wrapper-outer">
       <SideBar {...props} />
       <Layout>
+        <Header />
         <Layout.Content style={{ margin: "20px" }}>
           {Routes.map((route) => (
-            <Suspense fallback={<div>loading</div>}>
+            <Suspense key={route.componentName} fallback={<div>loading</div>}>
               <Route {...route} />
             </Suspense>
           ))}

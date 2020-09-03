@@ -1,34 +1,46 @@
 @import '~antd/dist/antd.css';
 
-.App {
-  text-align: center;
-}
+$color-button-danger: #f5222d;
+$color-button-danger-hover: #f55e66;
+$color-button-success: #52e20a;
+$color-button-success-hover: #7fe34d;
+$color-button-warning: #faad14;
+$color-button-warning-hover: #f8bb42;
+$color-button-purple: #8e24aa;
+$color-button-purple-hover: #8e24aa;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@mixin generateButtonCustom($color, $colorHover) {
+  color: white !important;
+  background-color: $color !important;
+  border-color: $color !important;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  &:hover {
+    background-color: $colorHover !important;
+    border-color: $colorHover !important;
   }
 }
 
 
-.App-link {
-  color: #61dafb;
+
+
+.ant-btn-custom-success {
+  @include generateButtonCustom($color-button-success, $color-button-success-hover);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.ant-btn-custom-danger {
+  @include generateButtonCustom($color-button-danger, $color-button-danger-hover);
 }
+
+.ant-btn-custom-warning {
+  @include generateButtonCustom($color-button-warning, $color-button-warning-hover);
+}
+
+.ant-btn-custom-purple {
+  @include generateButtonCustom($color-button-purple, $color-button-purple-hover);
+}
+
+
+
 
 .app-wrapper-outer {
   min-height: 100vh !important;
@@ -45,4 +57,44 @@
   -webkit-box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
 
+}
+
+
+.app-header-bar {
+  height: 50px !important;
+  line-height: 50px !important;
+
+  & .right-wrapper {
+    height: 50px;
+    float: right;
+    padding-right: 16px;
+
+    &>li.ant-menu-submenu-horizontal {
+      height: 100%;
+    }
+
+    &>li.ant-menu-submenu-horizontal:hover {
+      color: #1890ff;
+      background-color: rgba(24, 144, 255, .15);
+    }
+
+    & .header-user-info {
+      display: inline-block;
+      height: 100%;
+    }
+  }
+
+  & .left-wrapper {
+    float: left;
+    margin-left: 20px;
+
+    & i {
+      font-size: 16px;
+      line-height: 50px;
+      cursor: pointer;
+      -webkit-transition: all .3s, padding 0s;
+      transition: all .3s, padding 0s;
+      padding: 0 24px;
+    }
+  }
 }
